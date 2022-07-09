@@ -19,6 +19,9 @@ function actualTime(date) {
   let currentDay = days[date.getDay()];
   return `Today is ${currentDay}, ${hours}:${minutes}`;
 }
+let date = document.querySelector("#date");
+let currentTime = new Date();
+
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#daytemp").innerHTML = Math.round(
@@ -33,9 +36,6 @@ function searchCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
-
-let date = document.querySelector("#date");
-let currentTime = new Date();
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
